@@ -22,13 +22,13 @@ export default function Sidebar() {
             }
         }
         var sch2ForJunior=document.getElementsByName("sch2ForJunior");
-        for(var i=0;i<sch2ForJunior.length;i++){
+        for(let i=0;i<sch2ForJunior.length;i++){
             if(sch2ForJunior[i].getAttribute('type')==='radio'){
                 sch2ForJunior[i].checked = false;
             }
         }
         var estType=document.getElementsByName("estType");
-        for(var i=0;i<estType.length;i++){
+        for(let i=0;i<estType.length;i++){
             if(estType[i].getAttribute('type')==='radio'){
                 estType[i].checked = false;
             }
@@ -42,14 +42,14 @@ export default function Sidebar() {
     function deslectAll(){
         deslect();
         var sch1=document.getElementsByName("sch1");
-        for(var i=0;i<sch1.length;i++){
+        for(let i=0;i<sch1.length;i++){
             if(sch1[i].getAttribute('type')==='radio'){
                 sch1[i].checked = false;
             }
         }
         sch1Value="";
         var sch1Create = document.getElementsByName("schTypeForCreate");
-        for(var i=0;i<sch1Create.length;i++){
+        for(let i=0;i<sch1Create.length;i++){
             if(sch1Create[i].getAttribute('type')==='radio'){
                 sch1Create[i].checked = false;
             }
@@ -64,12 +64,12 @@ export default function Sidebar() {
         schCampusForCreate.value="";
         let sch2ForNormalForCreate = document.getElementsByName("sch2ForNormalForCreate");
         let estTypeForCreate = document.getElementsByName("estTypeForCreate");
-        for(var i=0;i<sch2ForNormalForCreate.length;i++){
+        for(let i=0;i<sch2ForNormalForCreate.length;i++){
             if(sch2ForNormalForCreate[i].getAttribute('type')==='radio'){
                 sch2ForNormalForCreate[i].checked = false;
             }
         }
-        for(var i=0;i<estTypeForCreate.length;i++){
+        for(let i=0;i<estTypeForCreate.length;i++){
             if(estTypeForCreate[i].getAttribute('type')==='radio'){
                 estTypeForCreate[i].checked = false;
             }
@@ -359,7 +359,7 @@ export default function Sidebar() {
     }
       useEffect(() => {
         ConfirmURL();
-     }, []);
+     },[]);
         const ConfirmURL = async()=>{
             try {
             
@@ -381,46 +381,6 @@ export default function Sidebar() {
         setData();
         PageData();
         newArrayData2();
-    }
-    const searchFunction = ()=>{
-        const searchArr = univList.map((item)=>{
-            if(sch1Value!==""&&sch2Value!==""){
-           if(item.estType===estTypeValue){
-                setSearchList(item);
-               
-           }
-       }
-       else if(estTypeValue!==""&&sch2Value!==""){
-           if(item.schoolGubun===sch1Value){
-               setSearchList(item);
-           }
-       }
-       else if(estTypeValue!==""&&sch1Value!==""){
-           if(item.schoolType===sch2Value){
-               setSearchList(item);
-           }
-       }
-       else if(estTypeValue!==""){
-           if(item.schoolType===sch2Value&&item.schoolGubun===sch1Value){
-               setSearchList(item);
-           }
-       }
-       else if(sch1Value!==""){
-           if(item.schoolType===sch2Value&&item.estType===estTypeValue){
-               setSearchList(item);
-           }
-       }
-       else if(sch2Value!==""){
-           if(item.schoolGubun===sch1Value&&item.estType===estTypeValue){
-               setSearchList(item);
-           }
-       }
-       else if(sch1Value!==""&&sch2Value!==""&&estTypeValue!==""){
-           if(item.schoolGubun===sch1Value&&item.estType===estTypeValue&&item.schoolType===sch2Value){
-               setSearchList(item);
-           }
-       }
-       })
     }
     
     const setData = () => {
@@ -478,12 +438,10 @@ export default function Sidebar() {
     else{
         totalData = searchList.length;
     }
-    //totalData = searchList.length;
-    const pageCount = totalData/20;
-    const arr=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
+   
     const PageData = () => {
         const pageArr = [];
-        const totalPages = Math.ceil(totalData / 20); // 페이지 계산
+        const totalPages = Math.ceil(totalData / 20); 
         for (let i = 0; i < totalPages; i++) {
             pageArr.push(
                 <li key={i} className="page-item" onClick={() => PageNumber(i + 1)}>
@@ -514,9 +472,9 @@ export default function Sidebar() {
                     <td><StyledLink href={searchList[i].link}>{searchList[i].schoolName}</StyledLink></td>
                     <td>{searchList[i].campusName}</td>
                     <td>{searchList[i].estType}</td>
-                    <td>{searchList[i].isFavorite ? <img src="star.png" style={{width: "20px"}} onClick={()=> toggleFavorite(searchList[i])}></img>:<img src="outline_star.png" style={{width: "20px"}} onClick={()=> toggleFavorite(searchList[i])}></img>}</td>
-                    <td><UpdateBtn data-bs-toggle="modal" data-bs-target="#updateNormalModal" onClick={()=> Update(searchList[i])}><img src="updateIcon.png" style={{width: "20px"}}></img></UpdateBtn></td>
-                    <td><DeleteBtn onClick={()=>deleteData(searchList[i].id)}><img src="deleteIcon.png" style={{width: "20px"}}></img></DeleteBtn></td>
+                    <td>{searchList[i].isFavorite ? <img alt="error" src="star.png" style={{width: "20px"}} onClick={()=> toggleFavorite(searchList[i])}></img>:<img alt="error" src="outline_star.png" style={{width: "20px"}} onClick={()=> toggleFavorite(searchList[i])}></img>}</td>
+                    <td><UpdateBtn data-bs-toggle="modal" data-bs-target="#updateNormalModal" onClick={()=> Update(searchList[i])}><img alt="error" src="updateIcon.png" style={{width: "20px"}}></img></UpdateBtn></td>
+                    <td><DeleteBtn onClick={()=>deleteData(searchList[i].id)}><img alt="error" src="deleteIcon.png" style={{width: "20px"}}></img></DeleteBtn></td>
                 </tr>
             );
         }
@@ -574,12 +532,12 @@ export default function Sidebar() {
 
             <Input>
                 <input type="text" id="searching" placeholder='대학명을 입력해주세요:)'></input>
-                <button onClick={filterEnter}><img src='./searchIcon.png'></img></button>
+                <button onClick={filterEnter}><img alt="error" src='./searchIcon.png'></img></button>
             </Input>
             <Filter>
                 <div id='moveFilter'>
                     <span>적용필터</span>
-                    <button id="modal_btn" data-bs-toggle="modal" data-bs-target="#filterModalNormal"><img src='./filterIcon2.png'></img></button>
+                    <button id="modal_btn" data-bs-toggle="modal" data-bs-target="#filterModalNormal"><img alt="error" src='./filterIcon2.png'></img></button>
                 </div>
 
                 <div id="condition"> {sch2Value} &nbsp;&nbsp; {estTypeValue} &nbsp;&nbsp; </div>
@@ -1221,8 +1179,5 @@ const UpdateBtn = styled.button`
 const DeleteBtn = styled.button`
     border: none;
     background: #FFF;
-`
-const FormDiv = styled.div`
-    margin: 20px;
 `
 
