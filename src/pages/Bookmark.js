@@ -11,137 +11,15 @@ let estTypeValue="";
 let sch2Value="";
 let totalData;
 export default function Bookmark() {
-  function toggleFavorite() {
-        
-  }
-  function deslect(){
-      
-      var sch2ForNormal=document.getElementsByName("sch2ForNormal");
-      for(var i=0;i<sch2ForNormal.length;i++){
-          if(sch2ForNormal[i].getAttribute('type')==='radio'){
-              sch2ForNormal[i].checked = false;
-          }
-      }
-      var sch2ForJunior=document.getElementsByName("sch2ForJunior");
-      for(var i=0;i<sch2ForJunior.length;i++){
-          if(sch2ForJunior[i].getAttribute('type')==='radio'){
-              sch2ForJunior[i].checked = false;
-          }
-      }
-      var estType=document.getElementsByName("estType");
-      for(var i=0;i<estType.length;i++){
-          if(estType[i].getAttribute('type')==='radio'){
-              estType[i].checked = false;
-          }
-      }
-      
-      estTypeValue="";
-      sch2Value="";
-  }
-  function deslectAll(){
-      deslect();
-      var sch1=document.getElementsByName("sch1");
-      for(var i=0;i<sch1.length;i++){
-          if(sch1[i].getAttribute('type')==='radio'){
-              sch1[i].checked = false;
-          }
-      }
-      sch1Value="";
-      setData();
-      ConfirmURL();
-  }
+  
+  
   
 
-  const getSch1=()=>{
-      let sch1List = document.getElementsByName("sch1");
-      sch1List.forEach((node)=>{
-          if(node.checked){
-              sch1Value=node.value;
-          }
-      })
-      if(sch1Value==="일반대학"){
-          sch1Value="대학(4년제)";
-          let modal =document.getElementById("modal_btn");
-          modal.setAttribute("data-bs-target","#filterModalNormal");
-      }
-      else if(sch1Value==="전문대학"){
-          let modal =document.getElementById("modal_btn");
-          modal.setAttribute("data-bs-target","#filterModalJunior")
-      }
-      console.log(sch1Value);
-      filterEnter();
-  }
+  
 
-  const getSch2ForNormal=()=>{
-      let sch2List = document.getElementsByName("sch2ForNormal");
-      
-      sch2List.forEach((node)=>{
-          if(node.checked){
-              sch2Value=node.value;
-          }
-      })
-      
-      if(sch2Value==="일반대학"){
-          sch2Value="대학교";
-      }
-      else if(sch2Value==="교육대학"){
-          
-      }
-      else if(sch2Value==="산업대학"){
-          
-      }
-      else if(sch2Value==="사이버대학(4년제)"){
-          sch2Value="사이버대학(대학)";
-      }
-      else if(sch2Value==="각종대학(대학)"){
-          
-      }
-      
-  }
+  
 
-  const getSch2ForJunior=()=>{
-      let sch2List = document.getElementsByName("sch2ForJunior");
-      sch2List.forEach((node)=>{
-          if(node.checked){
-              sch2Value=node.value;
-          }
-      })
-      
-      if(sch2Value==="전문대학"){
-          
-      }
-      else if(sch2Value==="기능대학"){
-          
-      }
-      else if(sch2Value==="사이버대학(2년제)"){
-          sch2Value="사이버대학(대학)"
-      }
-      else if(sch2Value==="각종대학(전문)"){
-          sch2Value="각종대학(대학)"
-      }
-      
-  }
-
-  const getEstType=()=>{
-      let estTypeList = document.getElementsByName("estType");
-      
-      estTypeList.forEach((node)=>{
-          if(node.checked){
-              estTypeValue=node.value;
-          }
-      })
-      
-      if(estTypeValue==="국립"){
-          
-      }
-      else if(estTypeValue==="사립"){
-          
-      }
-      else if(estTypeValue==="공립"){
-          
-      }
-      
-  }
+  
   
   let defaultList=[{
       campusName:"",
@@ -175,19 +53,8 @@ export default function Bookmark() {
             console.log(page);
 
   }
-  const filterEnter = ()=>{
-      searchFunction();
-      PageData();
-      newArrayData2();
-  }
-  const searchFunction = ()=>{
-      const searchArr = univList.map((item)=>{
-        if(item.isFavorite){
-          setSearchList(item);
-        }
-          
-     })
-  }
+  
+  
   
   const setData = () => {
       const filteredData = univList.filter((item) => {
@@ -216,12 +83,10 @@ export default function Bookmark() {
   else{
       totalData = searchList.length;
   }
-  //totalData = searchList.length;
-  const pageCount = totalData/20;
-  const arr=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
+  
   const PageData = () => {
       const pageArr = [];
-      const totalPages = Math.ceil(totalData / 20); // 페이지 계산
+      const totalPages = Math.ceil(totalData / 20);
       for (let i = 0; i < totalPages; i++) {
           pageArr.push(
               <li key={i} className="page-item" onClick={() => PageNumber(i + 1)}>
@@ -235,8 +100,8 @@ export default function Bookmark() {
   };
   
   function PageNumber(num) {
-      page=num; // 페이지 상태 업데이트
-      newArrayData2(); // 데이터 업데이트
+      page=num; 
+      newArrayData2(); 
   }
   const [tempData, setTempData] = useState([]);
   
@@ -252,12 +117,12 @@ export default function Bookmark() {
                   <td><StyledLink href={searchList[i].link}>{searchList[i].schoolName}</StyledLink></td>
                   <td>{searchList[i].campusName}</td>
                   <td>{searchList[i].estType}</td>
-                  <td>{searchList[i].isFavorite ? <img src="star.png" style={{width: "20px"}}></img>:<img src="outline_star.png" style={{width: "20px"}}></img>}</td>
+                  <td>{searchList[i].isFavorite ? <img alt="error" src="star.png" style={{width: "20px"}}></img>:<img alt="error" src="outline_star.png" style={{width: "20px"}}></img>}</td>
               </tr>
           );
       }
       setTempData(updatedData);
-      console.log(searchList.length)// 상태 업데이트
+      console.log(searchList.length)
   };
   return (
     <>
@@ -323,6 +188,7 @@ export default function Bookmark() {
         
                     
       </MainContainer>
+      <Footer></Footer>
     </>
   )
 }
@@ -355,75 +221,11 @@ const Container = styled.div`
     
     margin: 55px 50px;
 `
-const MainBtn = styled.div`
-    margin-bottom: 30px;
-    div{
-        width: 346px;
-        height: 68px;
-        position: relative;
-    }
-    label{
-        border-radius: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 24px;
-    }
-`
 
-const Input = styled.div`
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 346px;
-    height: 68px;
-    margin-bottom: 30px;
 
-    input{
-        width: 278px;
-        height: 68px;
-        border-radius: 20px;
-        background: #D9D9D9;
-    }
-    button{
-        width: 68px;
-        height: 68px;
-        border-radius: 20px;
-        background: #000;
-    }
-`
 
-const Filter = styled.div`
-    width: 346px;
-    height: 110px;
-    border-radius: 20px;
-    border: 2px solid #41AB66;
-    background: #FFF;
-    margin-bottom: 30px;
-    span{
-        font-size: 24px;
-        font-weight: 700;
-    }
-    button{
-        width: 34px;
-        height: 34px;
-        border: none;
-        background: #FFF;
-    }
-    #moveFilter{
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        border-bottom: solid 2px #000;
-        margin: 0 10px;
-        padding: 10px 10px;
-    }
-    #condition{
-        margin: 0 10px;
-        padding: 10px 10px;
-    }
-    
-`
+
+
 const BookMarkBtn = styled.button`
     margin-bottom: 30px;
     border-radius: 20px;
@@ -438,16 +240,7 @@ const BookMarkBtn = styled.button`
         color: #FFF;
     }
 `
-const ResetBtn = styled.button`
-    margin-bottom: 30px;
-    border-radius: 20px;
-    border: 2px solid #41AB66;
-    background: #FFF;
-    width: 346px;
-    height: 68px;
-    font-size: 24px;
-    color: #41AB66;
-`
+
 const StyledLink = styled.a`
   color: #000000;
   text-decoration: none;
