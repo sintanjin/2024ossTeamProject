@@ -8,7 +8,7 @@ export default function Main() {
 
   return (
     <>
-    <div style={{width:"100%"}}>
+    <div>
         <Header title="대학 정보"></Header>
         <div id='body'>
             <Sidebar></Sidebar>

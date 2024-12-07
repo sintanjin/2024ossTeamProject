@@ -1,8 +1,7 @@
 import React from 'react'
-import Sidebar from './Sidebar'
+import styled from 'styled-components';
 
 export default function Content() {
-
   return (
     <div>Content</div>
   )
